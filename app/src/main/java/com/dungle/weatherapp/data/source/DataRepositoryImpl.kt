@@ -10,7 +10,7 @@ class DataRepositoryImpl(
 ) : DataRepository {
     override fun getWeatherInfoByCity(cityName: String): WeatherInfoModel {
         //TODO change condition to handle which source to get data
-        return if (cityName.contains("asddasd")) {
+        return if (cityName.contains("some condition")) {
             localDataSource.getWeatherInfoByCity(cityName)
         } else {
             remoteDataSource.getWeatherInfoByCity(cityName)
