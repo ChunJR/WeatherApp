@@ -1,9 +1,9 @@
 package com.dungle.weatherapp.data.model
 
-sealed class Result<out T : Any> {
-    data class Success<out T : Any>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
-    object Loading : Result<Nothing>()
+sealed class DataResult<out T : Any> {
+    data class Success<out T : Any>(val data: T) : DataResult<T>()
+    data class Error(val exception: Exception) : DataResult<Nothing>()
+    object Loading : DataResult<Nothing>()
 
     override fun toString(): String {
         return when (this) {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.dungle.weatherapp.R
+import com.dungle.weatherapp.data.model.DataResult
 import com.dungle.weatherapp.main.viewmodel.WeatherInfoViewModel
 import com.dungle.weatherapp.util.getViewModelFactory
 
@@ -31,7 +32,7 @@ class MainFragment : Fragment() {
 
     private fun addEvents() {
         // TODO add click event when click to button to get data
-        viewModel.getWeatherInfo("something")
+        viewModel.getWeatherInfo("saigon")
     }
 
     private fun initUI() {
@@ -39,9 +40,29 @@ class MainFragment : Fragment() {
     }
 
     private fun observeDataChanged() {
-        viewModel.weatherInfoData.observe(viewLifecycleOwner, { data ->
-            //TODO notify data to adapter
+        viewModel.weatherInfoData.observe(viewLifecycleOwner, { dataResult ->
+            when (dataResult) {
+                is DataResult.Success -> {
+                    hideLoading()
+                }
+
+                is DataResult.Error -> {
+                    hideLoading()
+                }
+
+                is DataResult.Loading -> {
+                    showLoading()
+                }
+            }
         })
+    }
+
+    private fun hideLoading() {
+        // TODO hide loading
+    }
+
+    private fun showLoading() {
+        // TODO show loading
     }
 
     companion object {

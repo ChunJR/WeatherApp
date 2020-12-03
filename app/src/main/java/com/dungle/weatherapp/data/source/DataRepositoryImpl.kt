@@ -8,7 +8,7 @@ class DataRepositoryImpl(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) : DataRepository {
-    override fun getWeatherInfoByCity(cityName: String): WeatherInfoModel {
+    override suspend fun getWeatherInfoByCity(cityName: String): WeatherInfoModel {
         //TODO change condition to handle which source to get data
         return if (cityName.contains("some condition")) {
             localDataSource.getWeatherInfoByCity(cityName)
