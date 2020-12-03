@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.dungle.weatherapp.R
 import com.dungle.weatherapp.data.model.DataResult
 import com.dungle.weatherapp.main.viewmodel.WeatherInfoViewModel
 import com.dungle.weatherapp.util.getViewModelFactory
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
     private val viewModel: WeatherInfoViewModel by viewModels { getViewModelFactory() }
@@ -31,8 +33,9 @@ class MainFragment : Fragment() {
     }
 
     private fun addEvents() {
-        // TODO add click event when click to button to get data
-        viewModel.getWeatherInfo("saigon")
+        btnGetWeather?.setOnClickListener {
+            viewModel.getWeatherInfo(edCityName?.text.toString())
+        }
     }
 
     private fun initUI() {
@@ -48,6 +51,7 @@ class MainFragment : Fragment() {
 
                 is DataResult.Error -> {
                     hideLoading()
+                    showError(dataResult.exception)
                 }
 
                 is DataResult.Loading -> {
@@ -57,12 +61,22 @@ class MainFragment : Fragment() {
         })
     }
 
+    private fun showError(exception: Exception) {
+        Toast.makeText(
+            requireContext(), if (exception.message != null) {
+                exception.message
+            } else {
+                "Something went wrong"
+            }, Toast.LENGTH_SHORT
+        ).show()
+    }
+
     private fun hideLoading() {
-        // TODO hide loading
+        pbLoading?.visibility = View.GONE
     }
 
     private fun showLoading() {
-        // TODO show loading
+        pbLoading?.visibility = View.VISIBLE
     }
 
     companion object {

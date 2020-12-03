@@ -4,7 +4,7 @@ import com.dungle.weatherapp.data.model.WeatherInfoModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface WeatherInfoApi {
+interface WeatherInfoApiService {
 
     @GET("daily")
     suspend fun getWeatherInfoFromApi(
