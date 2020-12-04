@@ -1,16 +1,16 @@
 package com.dungle.weatherapp.main.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dungle.weatherapp.R
-import com.dungle.weatherapp.data.model.DataResult
+import com.dungle.weatherapp.data.model.Status
 import com.dungle.weatherapp.main.viewmodel.WeatherInfoViewModel
 import com.dungle.weatherapp.util.getViewModelFactory
 import com.dungle.weatherapp.util.widgets.CustomItemDivider
@@ -42,7 +42,8 @@ class MainFragment : Fragment() {
 
     private fun initUI() {
         context?.let {
-            val customItemDivider = CustomItemDivider(ContextCompat.getDrawable(it, R.drawable.divider)!!)
+            val customItemDivider =
+                CustomItemDivider(ContextCompat.getDrawable(it, R.drawable.divider)!!)
             rcvWeather.adapter = adapter
             rcvWeather.addItemDecoration(customItemDivider)
             rcvWeather.layoutManager = LinearLayoutManager(it)
@@ -51,32 +52,32 @@ class MainFragment : Fragment() {
 
     private fun observeDataChanged() {
         viewModel.areaData.observe(viewLifecycleOwner, { dataResult ->
-            when (dataResult) {
-                is DataResult.Success -> {
+            when (dataResult.status) {
+                Status.SUCCESS -> {
                     hideLoading()
-                    adapter.data = dataResult.data.weatherInfoList
+                    dataResult.data?.weatherInfoList?.let {
+                        adapter.data = it
+                    }
                 }
 
-                is DataResult.Error -> {
+                Status.ERROR -> {
                     hideLoading()
-                    showError(dataResult.exception)
+                    showError(dataResult.message)
                 }
 
-                is DataResult.Loading -> {
+                else -> {
                     showLoading()
                 }
             }
         })
     }
 
-    private fun showError(exception: Exception) {
+    private fun showError(message: String? = "Some thing went wrong") {
         context?.let {
             Toast.makeText(
-                it, if (exception.message != null) {
-                    exception.message
-                } else {
-                    "Something went wrong"
-                }, Toast.LENGTH_SHORT
+                it,
+                message,
+                Toast.LENGTH_SHORT
             ).show()
         }
     }

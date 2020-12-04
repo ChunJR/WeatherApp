@@ -1,15 +1,23 @@
 package com.dungle.weatherapp.data.model
 
-sealed class DataResult<out T : Any> {
-    data class Success<out T : Any>(val data: T) : DataResult<T>()
-    data class Error(val exception: Exception) : DataResult<Nothing>()
-    object Loading : DataResult<Nothing>()
+data class DataResult<out T>(val status: Status, val data: T?, val message: String?) {
+    companion object {
+        fun <T> success(data: T?): DataResult<T> {
+            return DataResult(Status.SUCCESS, data, null)
+        }
 
-    override fun toString(): String {
-        return when (this) {
-            is Success<*> -> "Success[data=$data]"
-            is Error -> "Error[exception=$exception]"
-            Loading -> "Loading"
+        fun <T> error(msg: String, data: T?): DataResult<T> {
+            return DataResult(Status.ERROR, data, msg)
+        }
+
+        fun <T> loading(data: T?): DataResult<T> {
+            return DataResult(Status.LOADING, data, null)
         }
     }
+}
+
+enum class Status {
+    SUCCESS,
+    ERROR,
+    LOADING
 }
