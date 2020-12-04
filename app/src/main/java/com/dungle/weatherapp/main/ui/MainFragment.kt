@@ -6,16 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dungle.weatherapp.R
 import com.dungle.weatherapp.data.model.DataResult
 import com.dungle.weatherapp.main.viewmodel.WeatherInfoViewModel
 import com.dungle.weatherapp.util.getViewModelFactory
+import com.dungle.weatherapp.util.widgets.CustomItemDivider
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
     private val viewModel: WeatherInfoViewModel by viewModels { getViewModelFactory() }
-
+    private val adapter = WeatherAdapter()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,7 +29,6 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         initUI()
         addEvents()
         observeDataChanged()
@@ -39,14 +41,20 @@ class MainFragment : Fragment() {
     }
 
     private fun initUI() {
-        // TODO Add adapter
+        context?.let {
+            val customItemDivider = CustomItemDivider(ContextCompat.getDrawable(it, R.drawable.divider)!!)
+            rcvWeather.adapter = adapter
+            rcvWeather.addItemDecoration(customItemDivider)
+            rcvWeather.layoutManager = LinearLayoutManager(it)
+        }
     }
 
     private fun observeDataChanged() {
-        viewModel.weatherInfoData.observe(viewLifecycleOwner, { dataResult ->
+        viewModel.areaData.observe(viewLifecycleOwner, { dataResult ->
             when (dataResult) {
                 is DataResult.Success -> {
                     hideLoading()
+                    adapter.data = dataResult.data.weatherInfoList
                 }
 
                 is DataResult.Error -> {
@@ -62,13 +70,15 @@ class MainFragment : Fragment() {
     }
 
     private fun showError(exception: Exception) {
-        Toast.makeText(
-            requireContext(), if (exception.message != null) {
-                exception.message
-            } else {
-                "Something went wrong"
-            }, Toast.LENGTH_SHORT
-        ).show()
+        context?.let {
+            Toast.makeText(
+                it, if (exception.message != null) {
+                    exception.message
+                } else {
+                    "Something went wrong"
+                }, Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun hideLoading() {

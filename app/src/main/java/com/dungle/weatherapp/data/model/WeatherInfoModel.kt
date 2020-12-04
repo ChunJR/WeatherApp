@@ -1,13 +1,14 @@
 package com.dungle.weatherapp.data.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class WeatherInfoModel(
-    val dt: Int = 0,
-    val sunrise: Int = 0,
-    val sunset: Int = 0,
+    @SerializedName("dt") val dateTime: Long = 0,
+    val sunrise: Long = 0,
+    val sunset: Long = 0,
     val temp: Temp = Temp(),
     val feels_like: FeelsLike = FeelsLike(),
     val pressure: Int = 0,
