@@ -1,4 +1,4 @@
-package com.dungle.weatherapp.util.widgets
+package com.dungle.weatherapp.widgets
 
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable

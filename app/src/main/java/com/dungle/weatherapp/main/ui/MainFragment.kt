@@ -13,7 +13,7 @@ import com.dungle.weatherapp.R
 import com.dungle.weatherapp.data.model.Status
 import com.dungle.weatherapp.main.viewmodel.WeatherInfoViewModel
 import com.dungle.weatherapp.util.getViewModelFactory
-import com.dungle.weatherapp.util.widgets.CustomItemDivider
+import com.dungle.weatherapp.widgets.CustomItemDivider
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
