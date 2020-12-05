@@ -3,7 +3,7 @@
     <string name="hint_city">Enter City Name</string>
     <string name="button_city_text">Get Weather</string>
     <string name="txt_date">Date: %s</string>
-    <string name="txt_average_temperature">Average temperature: %s"</string>
+    <string name="txt_average_temperature">Average temperature: %s°C"</string>
     <string name="txt_pressure">Pressure: %d</string>
     <string name="txt_humidity">Humidity: %d</string>
     <string name="txt_description">Description: %s</string>
