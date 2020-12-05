@@ -9,7 +9,7 @@ class TimeUtils {
 
         fun convertMillsToDateTimeAsString(pattern: String?, milliTime: Long): String? {
             val sdf = SimpleDateFormat(pattern, Locale.getDefault())
-            val date = Date(milliTime)
+            val date = Date(milliTime * 1000)
             return sdf.format(date)
         }
     }
