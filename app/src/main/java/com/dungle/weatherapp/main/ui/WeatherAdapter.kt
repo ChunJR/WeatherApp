@@ -45,7 +45,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
             )
             tvAverageTemperature?.text = containerView.context.getString(
                 R.string.txt_average_temperature,
-                UnitUtils.convertKelvinToCelsius(weatherInfoModel.temp.getAveragePerDay())
+                UnitUtils.getRoundedNumber(weatherInfoModel.temp.getAveragePerDay())
             )
             tvPressure?.text = containerView.context.getString(
                 R.string.txt_pressure,

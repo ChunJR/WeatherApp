@@ -10,5 +10,6 @@ interface WeatherInfoApiService {
     suspend fun getWeatherInfoFromApi(
         @Query("q") cityName: String,
         @Query("cnt") foreCastDay: Int = 7,
+        @Query("units") unit: String = "metric",
     ): Area
 }
