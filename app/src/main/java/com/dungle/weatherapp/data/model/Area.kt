@@ -1,14 +1,14 @@
 package com.dungle.weatherapp.data.model
 
-import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+@Entity(tableName = "area_table")
 data class Area(
-        val city: City = City(),
-        val cod: String = "",
-        val message: Double = 0.0,
-        val cnt: Int = 0,
+        @PrimaryKey
+        @ColumnInfo(name = "name") var cityName: String,
+        @ColumnInfo(name = "weatherInfoList")
         @SerializedName("list") val weatherInfoList: List<WeatherInfoModel> = listOf()
-) : Parcelable
+)

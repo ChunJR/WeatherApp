@@ -15,6 +15,7 @@ open class ResponseHandler {
                 getErrorMessage(ErrorCodes.SocketTimeOut.code),
                 null
             )
+            is NullPointerException -> DataResult.error(getErrorMessage(404), null) // Offline search will return null if search result not match
             else -> DataResult.error(getErrorMessage(Int.MAX_VALUE), null)
         }
     }

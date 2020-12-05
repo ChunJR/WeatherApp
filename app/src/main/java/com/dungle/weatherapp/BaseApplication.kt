@@ -6,9 +6,5 @@ import com.dungle.weatherapp.data.source.repo.DataRepositoryImpl
 class BaseApplication : Application() {
 
     val dataRepositoryImpl: DataRepositoryImpl
-        get() = Injection.provideDataRepository()
-
-    override fun onCreate() {
-        super.onCreate()
-    }
+        get() = Injection.provideDataRepository(baseContext)
 }

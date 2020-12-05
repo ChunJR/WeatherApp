@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dungle.weatherapp.R
 import com.dungle.weatherapp.data.model.Status
 import com.dungle.weatherapp.main.viewmodel.WeatherInfoViewModel
+import com.dungle.weatherapp.util.NetworkUtil
 import com.dungle.weatherapp.util.getViewModelFactory
 import com.dungle.weatherapp.widgets.CustomItemDivider
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -36,7 +37,9 @@ class MainFragment : Fragment() {
 
     private fun addEvents() {
         btnGetWeather?.setOnClickListener {
-            viewModel.getWeatherInfo(edCityName?.text.toString())
+            context?.let {
+                viewModel.getWeatherInfo(edCityName?.text.toString(), NetworkUtil.isNetworkAvailable(it))
+            }
         }
     }
 
