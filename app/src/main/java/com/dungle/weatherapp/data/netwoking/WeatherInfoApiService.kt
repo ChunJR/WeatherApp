@@ -1,4 +1,4 @@
-package com.dungle.weatherapp.data.source.remote
+package com.dungle.weatherapp.data.netwoking
 
 import com.dungle.weatherapp.data.model.Area
 import retrofit2.http.GET

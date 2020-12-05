@@ -1,7 +1,6 @@
-package com.dungle.weatherapp.data.source
+package com.dungle.weatherapp.data.source.repo
 
 import com.dungle.weatherapp.data.model.Area
-import com.dungle.weatherapp.data.model.WeatherInfoModel
 import com.dungle.weatherapp.data.source.local.LocalDataSource
 import com.dungle.weatherapp.data.source.remote.RemoteDataSource
 

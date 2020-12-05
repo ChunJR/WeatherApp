@@ -1,7 +1,7 @@
 package com.dungle.weatherapp
 
 import android.app.Application
-import com.dungle.weatherapp.data.source.DataRepositoryImpl
+import com.dungle.weatherapp.data.source.repo.DataRepositoryImpl
 
 class BaseApplication : Application() {
 

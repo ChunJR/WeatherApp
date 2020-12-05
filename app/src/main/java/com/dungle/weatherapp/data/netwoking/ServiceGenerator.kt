@@ -1,4 +1,4 @@
-package com.dungle.weatherapp.data.source.remote
+package com.dungle.weatherapp.data.netwoking
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

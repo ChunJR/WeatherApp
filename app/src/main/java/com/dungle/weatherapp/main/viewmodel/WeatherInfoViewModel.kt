@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dungle.weatherapp.data.model.Area
 import com.dungle.weatherapp.data.model.DataResult
-import com.dungle.weatherapp.data.source.DataRepositoryImpl
+import com.dungle.weatherapp.data.source.repo.DataRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch

@@ -1,6 +1,7 @@
 package com.dungle.weatherapp.data.source.remote
 
 import com.dungle.weatherapp.data.model.Area
+import com.dungle.weatherapp.data.netwoking.WeatherInfoApiService
 import com.dungle.weatherapp.data.source.DataSource
 
 class RemoteDataSource (private val service: WeatherInfoApiService) : DataSource {

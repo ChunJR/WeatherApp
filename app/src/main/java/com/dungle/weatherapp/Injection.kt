@@ -1,10 +1,10 @@
 package com.dungle.weatherapp
 
-import com.dungle.weatherapp.data.source.DataRepositoryImpl
+import com.dungle.weatherapp.data.source.repo.DataRepositoryImpl
 import com.dungle.weatherapp.data.source.local.LocalDataSource
 import com.dungle.weatherapp.data.source.remote.RemoteDataSource
-import com.dungle.weatherapp.data.source.remote.ServiceGenerator
-import com.dungle.weatherapp.data.source.remote.WeatherInfoApiService
+import com.dungle.weatherapp.data.netwoking.ServiceGenerator
+import com.dungle.weatherapp.data.netwoking.WeatherInfoApiService
 
 object Injection {
 
