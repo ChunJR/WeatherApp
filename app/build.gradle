@@ -19,6 +19,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            try {
+                minifyEnabled true
+                buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/data/2.5/forecast/\""
+                buildConfigField "String", "API_KEY", api_key
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            } catch (e) {
+                throw e
+            }
+        }
+
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
