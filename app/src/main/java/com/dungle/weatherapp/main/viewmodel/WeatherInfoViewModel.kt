@@ -15,8 +15,7 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 class WeatherInfoViewModel(
-    private val dataRepositoryImpl: DataRepositoryImpl,
-    private val responseHandler: ResponseHandler,
+    private val dataRepositoryImpl: DataRepositoryImpl
 ) : ViewModel() {
     private var _areaData: MutableLiveData<DataResult<Area>> = MutableLiveData()
     val areaData: LiveData<DataResult<Area>>
@@ -44,10 +43,10 @@ class WeatherInfoViewModel(
                     if (isNetworkAvailable) {
                         saveToLocal(cityName, data)
                     }
-                    _areaData.postValue(responseHandler.handleSuccess(data))
+                    _areaData.postValue(ResponseHandler().handleSuccess(data))
                 }
             } catch (e: Exception) {
-                _areaData.postValue(responseHandler.handleException(e))
+                _areaData.postValue(ResponseHandler().handleException(e))
             }
         }
     }
