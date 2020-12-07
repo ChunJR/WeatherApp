@@ -1,7 +1,5 @@
 # WeatherApp (Android)
 
-This repository is Kotlin replication of [this](https://github.com/dungle25/WeatherApp).
-
 This app shows the weather and forecast for the next 7 days. There is an edit box where the user can find the desired city for weather updates.
 
 ## Architecture overview
